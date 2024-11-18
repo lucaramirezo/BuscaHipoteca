@@ -24,7 +24,7 @@ public class Main extends Application {
             // Ícono para la ventana (Opcional)
             //primaryStage.getIcons().add(
             //    new javafx.scene.image.Image(getClass().getResourceAsStream("/images/icon.png"))
-           // );
+            // );
 
             // Mostrar la vista
             primaryStage.setScene(scene);
