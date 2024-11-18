@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="buscahipoteeca.controller.MainController">
+    <TextField fx:id="nameField" promptText="Ingresa tu nombre" />
+    <Button text="Enviar" onAction="#handleSubmit" />
+    <Label fx:id="messageLabel" text="Bienvenido!" />
+</VBox>
