@@ -1,4 +1,4 @@
-package buscahipoteeca.app;
+package buscaHipoteca.app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,13 +15,13 @@ public class App extends Application {
 	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/VIEW/FXML/MainView.fxml"));
 	            Parent root = loader.load();
 
-	            // Crear el objecto scene (La vista)
+	            // Crear el objeto scene (La vista)
 	            Scene scene = new Scene(root);
 
-	            // El título de la ventana (Se puede dejar vacio)
-	            primaryStage.setTitle("Buscahipoteeca");
+	            // El tï¿½tulo de la ventana (Se puede dejar vacio)
+	            primaryStage.setTitle("Busca Hipoteca");
 
-	            // Ícono para la ventana (Opcional)
+	            // ï¿½cono para la ventana (Opcional)
 	            primaryStage.getIcons().add(
 	            	    new javafx.scene.image.Image(getClass().getResourceAsStream("/VIEW/IMAGENES/logo.png"))
 	            	);

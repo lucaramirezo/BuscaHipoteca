@@ -1,6 +1,6 @@
-package buscahipoteeca;
+package buscaHipoteca;
 
-import buscahipoteeca.app.App;
+import buscaHipoteca.app.App;
 
 public class Main {    
 

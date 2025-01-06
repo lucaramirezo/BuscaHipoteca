@@ -1,34 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<StackPane style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="buscahipoteeca.controller.MainController">
-   <children>
-      <VBox fx:id="VIEW" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0">
-         <children>
-            <Label fx:id="NombreText" text="NOMBRE" textFill="WHITE">
-               <font>
-                  <Font name="Georgia" size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="UsuarioLabel" prefHeight="26.0" prefWidth="103.0" />
-            <Label fx:id="PassText" text="CONTRASEÑA" textFill="WHITE">
-               <font>
-                  <Font name="Georgia" size="20.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="PassLabel" prefHeight="25.0" />
-            <Button fx:id="LoginButton" onAction="#onLoginAction" style="-fx-background-radius: 50; -fx-background-color: #525252; -fx-border-color: #030303; -fx-border-radius: 50; -fx-border-width: 3;" text="Iniciar Sesión" textFill="WHITE">
-               <font>
-                  <Font name="Georgia" size="16.0" />
-               </font></Button>
-         </children>
-      </VBox>
-   </children>
+<StackPane style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="buscaHipoteca.controller.MainController">
+    <children>
+        <VBox fx:id="mainVBox" alignment="TOP_CENTER" spacing="20" prefHeight="800.0" prefWidth="1000.0" style="-fx-padding: 30;">
+            <!-- Contenedor del logo y mensaje de bienvenida -->
+            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 10;">
+				<!-- Logo -->
+				<ImageView fitHeight="60.0" fitWidth="60.0">
+				    <image>
+				        <Image url="@/VIEW/IMAGENES/logo.png" />
+				    </image>
+				</ImageView>
+
+                <!-- Mensaje de Bienvenida -->
+                <VBox alignment="CENTER_LEFT">
+                    <Label text="¡Bienvenido a BuscaHipoteca!" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A202C;" />
+                    <Label text="Encuentra la mejor opción para tu nueva casa, fácil y rápido." style="-fx-font-size: 14px; -fx-text-fill: #7A7A7A;" />
+                </VBox>
+            </HBox>
+
+            <!-- Espaciado para separar el header del contenido -->
+            <Label text="" style="-fx-padding: 10;" />
+
+            <!-- Vista de Login -->
+            <VBox fx:id="loginView" alignment="CENTER" spacing="20" visible="true">
+                <Label text="Iniciar Sesión" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1A202C;" />
+                
+                <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);">
+                    <!-- Campo Usuario -->
+                    <TextField fx:id="usuarioTextField" promptText="Usuario o correo" style="-fx-background-radius: 8; -fx-padding: 15;" />
+                    
+                    <!-- Campo Contraseña -->
+                    <PasswordField fx:id="passwordField" promptText="Contraseña" style="-fx-background-radius: 8; -fx-padding: 15;" />
+
+                    <!-- Botón de Login -->
+                    <Button fx:id="loginButton" text="Iniciar Sesión" onAction="#onLoginAction" prefWidth="200.0" style="-fx-background-color: #2B6CB0; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 8; -fx-padding: 10;" />
+
+                    <!-- Enlace de registro -->
+                    <Label text="¿No tienes cuenta? Regístrate" style="-fx-font-size: 14px; -fx-text-fill: #38B2AC;" underline="true" onMouseClicked="#showRegisterView" />
+                </VBox>
+            </VBox>
+
+            <!-- Vista de Registro -->
+            <VBox fx:id="registerView" alignment="CENTER" spacing="20" visible="false">
+                <Label text="Crear una Cuenta" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1A202C;" />
+
+                <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);">
+                    <!-- Campo Usuario -->
+                    <TextField fx:id="registerUserField" promptText="Usuario o correo" style="-fx-background-radius: 8; -fx-padding: 15;" />
+                    
+                    <!-- Campo Contraseña -->
+                    <PasswordField fx:id="registerPasswordField" promptText="Contraseña" style="-fx-background-radius: 8; -fx-padding: 15;" />
+                    
+                    <!-- Confirmar Contraseña -->
+                    <PasswordField fx:id="confirmPasswordField" promptText="Confirmar Contraseña" style="-fx-background-radius: 8; -fx-padding: 15;" />
+
+                    <!-- Botón de Registro -->
+                    <Button fx:id="registerButton" text="Registrar" onAction="#onRegisterAction" prefWidth="200.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 8; -fx-padding: 10;" />
+
+                    <!-- Enlace para volver al Login -->
+                    <Label text="¿Ya tienes cuenta? Inicia sesión" style="-fx-font-size: 14px; -fx-text-fill: #38B2AC;" underline="true" onMouseClicked="#showLoginView" />
+                </VBox>
+            </VBox>
+        </VBox>
+    </children>
 </StackPane>

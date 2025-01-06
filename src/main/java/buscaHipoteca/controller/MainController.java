@@ -1,16 +1,15 @@
-package buscahipoteeca.controller;
-import java.io.IOException;
+package buscaHipoteca.controller;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -18,84 +17,121 @@ import javafx.stage.Stage;
 public class MainController {
 
     @FXML
-    private Button LoginButton;
+    private VBox mainVBox; // Contenedor principal
 
+    // Vista de Login
     @FXML
-    private TextField PassLabel;
+    private VBox loginView;
+    @FXML
+    private TextField usuarioTextField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private Button loginButton;
 
+    // Vista de Registro
     @FXML
-    private TextField UsuarioLabel;
+    private VBox registerView;
+    @FXML
+    private TextField registerUserField;
+    @FXML
+    private PasswordField registerPasswordField;
+    @FXML
+    private PasswordField confirmPasswordField;
+    @FXML
+    private Button registerButton;
 
-    @FXML
-    private VBox VIEW;
-    
-    @FXML
-    private Label NombreText;
-
-    @FXML
-    private Label PassText;
-
-    @FXML
-    void onLoginAction(ActionEvent event) {
-    	ComprobarContraseña(UsuarioLabel.getText(), PassLabel.getText());    	
-    }
-
+    /**
+     * InicializaciÃ³n automÃ¡tica al cargar la vista.
+     */
     public void initialize() {
-        // Centrar el contenido dentro del VBox
-        VIEW.setAlignment(Pos.CENTER);
-
-        // Ajustar el ancho de los elementos de forma proporcional al ancho del VBox
-        double textFieldWidthRatio = 0.65; // Los TextField ocuparán el 65% del ancho del VBox
-
-        // Vincular ancho de los TextField
-        UsuarioLabel.prefWidthProperty().bind(VIEW.widthProperty().multiply(textFieldWidthRatio));
-        PassLabel.prefWidthProperty().bind(VIEW.widthProperty().multiply(textFieldWidthRatio));
-
-        // Vincular ancho del botón
-        LoginButton.prefWidthProperty().bind(VIEW.widthProperty().multiply(0.5)); // El botón será el 50% del ancho del VBox
-
-        // Opcional: limitar un tamaño máximo del VBox para evitar que crezca desmesuradamente
-        VIEW.setMaxWidth(600);
+        showLoginView(); // Mostramos la vista de login al inicio
     }
 
-    public void ComprobarContraseña(String Usuario, String Pass) {
-    	System.out.println(Usuario);
-    	System.out.println(Pass);
-    	//Esto es un ejemplo, una vez creemos la base de datos hay que cambiarlo para verificar contra la bbdd
-    	if(Usuario.equals("ADMIN")){
-    		if(Pass.equals("ADMIN")) {
-    			System.out.println("Acceso Permitido");
-    			CambiarScene();
-    		}else {
-    			System.out.println("Contraseña no valida");
-    		}
-    	}else
-    	{
-    		System.out.println("No es Valido");
-    	}
+    /**
+     * Muestra la vista de login y oculta la de registro.
+     */
+    @FXML
+    private void showLoginView() {
+        loginView.setVisible(true);
+        registerView.setVisible(false);
     }
-    public void CambiarScene() {
-    	// Cambiar a la nueva escena
+
+    /**
+     * Muestra la vista de registro y oculta la de login.
+     */
+    @FXML
+    private void showRegisterView() {
+        loginView.setVisible(false);
+        registerView.setVisible(true);
+    }
+
+    /**
+     * AcciÃ³n de inicio de sesiÃ³n.
+     */
+    @FXML
+    private void onLoginAction(ActionEvent event) {
+        String usuario = usuarioTextField.getText().trim();
+        String contrasena = passwordField.getText().trim();
+
+        if (usuario.isEmpty() || contrasena.isEmpty()) {
+            showAlert("Error", "Por favor, completa todos los campos.");
+        } else if (usuario.equals("ADMIN") && contrasena.equals("ADMIN")) {
+            showAlert("Acceso Permitido", "Â¡Bienvenido al sistema!");
+            cambiarScene(); // Cambiar a la vista del dashboard
+        } else {
+            showAlert("Error de autenticaciÃ³n", "Usuario o contraseÃ±a incorrectos.");
+        }
+    }
+
+    /**
+     * AcciÃ³n de registro de un nuevo usuario.
+     */
+    @FXML
+    private void onRegisterAction(ActionEvent event) {
+        String usuario = registerUserField.getText().trim();
+        String pass = registerPasswordField.getText().trim();
+        String confirmPass = confirmPasswordField.getText().trim();
+
+        if (usuario.isEmpty() || pass.isEmpty() || confirmPass.isEmpty()) {
+            showAlert("Error", "Todos los campos son obligatorios.");
+        } else if (!pass.equals(confirmPass)) {
+            showAlert("Error", "Las contraseÃ±as no coinciden.");
+        } else {
+            showAlert("Registro Exitoso", "Â¡Tu cuenta ha sido creada!");
+            showLoginView(); // Volvemos automÃ¡ticamente al login tras el registro
+        }
+    }
+
+    /**
+     * Cambia la escena al dashboard tras un login exitoso.
+     */
+    private void cambiarScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/VIEW/FXML/SecondView.fxml"));
+            // Cargar la nueva vista del dashboard
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/VIEW/FXML/ComparadorView.fxml"));
             Parent root = loader.load();
-            
-            // Obtén el stage actual y cambia la escena
-            Stage stage = (Stage) PassLabel.getScene().getWindow();
+
+            // Obtener el stage actual y cambiar la escena
+            Stage stage = (Stage) mainVBox.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Buscahipoteeca");
+            stage.setTitle("Panel Principal - BuscaHipoteca");
         } catch (IOException e) {
             e.printStackTrace();
             showAlert("Error", "No se pudo cargar la vista del Dashboard.");
         }
-    } 
-    
-	//Método para mostrar una alerta
-	private void showAlert(String title, String content) {
-	    Alert alert = new Alert(AlertType.ERROR);
-	    alert.setTitle(title);
-	    alert.setContentText(content);
-	    alert.showAndWait();
-	}
+    }
 
+    /**
+     * Muestra una alerta informativa o de error.
+     * 
+     * @param title   TÃ­tulo de la alerta.
+     * @param content Contenido de la alerta.
+     */
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 }

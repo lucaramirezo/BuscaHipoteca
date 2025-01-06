@@ -1,4 +1,4 @@
-package buscahipoteeca.model;
+package buscaHipoteca.model;
 
 public class Usuario {
     private String name;
