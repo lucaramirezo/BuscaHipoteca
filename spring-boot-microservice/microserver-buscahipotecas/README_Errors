@@ -1,0 +1,2 @@
+* Si tenemos varias base de datos con el mismo nombre se puede liar.
+* Si tenemos varios usuarios creados iguales se pueden liar lo auth.

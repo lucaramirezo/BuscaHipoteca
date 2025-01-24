@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "49a4d6cf-2550-413c-992d-0718b5973a2a",
+		"name": "Grupo_9_Buscahipotecas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "5910793"
+	},
+	"item": [
+		{
+			"name": "auth/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"alejandro.ruiz.pruebas@gmail.com\",\n    \"password\": \"prueba1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/test/test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:8080/test/test"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/auth/test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:8080/auth/test"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"alejandro.ruiz.pruebas@gmail.com\",\n    \"email\": \"alejandro.ruiz.pruebas@gmail.com\",\n    \"password\": \"prueba1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/demo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVqYW5kcm8ucnVpei5wcnVlYmFzQGdtYWlsLmNvbSIsImlhdCI6MTczNjk3MDA4MCwiZXhwIjoxNzM2OTcxNTIwfQ.uIY-yRbmuwbL_GCioLbaicGCEk8fT8XFU5aQTKFB8ao"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/demo"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/v3/api-docs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/v3/api-docs"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/doc/swagger-ui.html",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/doc/swagger-ui.html"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/usuario/all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVqYW5kcm8ucnVpei5wcnVlYmFzQGdtYWlsLmNvbSIsImlhdCI6MTczNjk3MDA4MCwiZXhwIjoxNzM2OTcxNTIwfQ.uIY-yRbmuwbL_GCioLbaicGCEk8fT8XFU5aQTKFB8ao"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/usuario/all"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/usuario/get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVqYW5kcm8ucnVpei5wcnVlYmFzQGdtYWlsLmNvbSIsImlhdCI6MTczNzY2NTY4NSwiZXhwIjoxNzM3NjY3MTI1fQ.B2o393xWZcmB2HcqDjs4nD3qi4byU73KLyXz0yceKPg"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/usuario/8"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/hipoteca/all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVqYW5kcm8ucnVpei5wcnVlYmFzQGdtYWlsLmNvbSIsImlhdCI6MTczNjk3MDA4MCwiZXhwIjoxNzM2OTcxNTIwfQ.uIY-yRbmuwbL_GCioLbaicGCEk8fT8XFU5aQTKFB8ao"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/hipoteca/all"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/hipoteca/create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGVqYW5kcm8ucnVpei5wcnVlYmFzQGdtYWlsLmNvbSIsImlhdCI6MTczNjk3MDA4MCwiZXhwIjoxNzM2OTcxNTIwfQ.uIY-yRbmuwbL_GCioLbaicGCEk8fT8XFU5aQTKFB8ao"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre_hipoteca\": \"Sabadell\",\n    \"importe_inicial\": 200000,\n    \"mensualidad\": 687,\n    \"tipo_hipoteca\": \"mixta\",\n    \"finalidad\": \"primera vivienda\",\n    \"id_entidad\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/hipoteca/create"
+			},
+			"response": []
+		}
+	]
+}
