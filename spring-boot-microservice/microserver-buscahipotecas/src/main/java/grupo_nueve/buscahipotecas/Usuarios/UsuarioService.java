@@ -21,5 +21,11 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    public Usuario getById(int id_usuario) {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        return usuarioRepository.findById(id_usuario).orElse(null);
+    }
+
 
 }

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BuscahipotecasApplication<buscahipotecas>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "grupo_nueve.buscahipotecas.BuscahipotecasApplication",
+            "projectName": "buscahipotecas",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

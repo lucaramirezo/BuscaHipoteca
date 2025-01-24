@@ -24,7 +24,8 @@ public class AuthService {
     public AuthResponse login(LoginRequest request) {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'login'");
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        // authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         UserDetails usuario_details=usuarioRepository.findByUsername(request.getEmail()).orElseThrow();
         
         String token=jwtServie.getToken(usuario_details);
@@ -37,6 +38,10 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request) {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'register'");
+
+        if (usuarioRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("User already exists");
+        }
 
         Usuario usuario = Usuario.builder()
             .username(request.getEmail())
