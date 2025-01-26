@@ -37,15 +37,11 @@ public class ApplicationConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'passwordEncoder'");
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public UserDetailsService userDetailsService() {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'userDetailsService'");
         return username -> usuarioRepository.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("User not found."));
     }

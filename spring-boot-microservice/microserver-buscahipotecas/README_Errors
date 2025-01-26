@@ -1,2 +1,5 @@
 * Si tenemos varias base de datos con el mismo nombre se puede liar.
 * Si tenemos varios usuarios creados iguales se pueden liar lo auth.
+* El usuario se actualiza si vienen todos los parámetros.
+* No se está hasheando el pass.
+* Crear respuestas más detalladas.

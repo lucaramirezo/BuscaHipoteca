@@ -1,22 +1,15 @@
 package grupo_nueve.buscahipotecas.Hipotecas;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.UserDetailsManager;
-
-import jakarta.persistence.Basic;
+import grupo_nueve.buscahipotecas.Usuarios.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -51,7 +44,9 @@ public class Hipoteca {
     int id_entidad;
     
     
-
+    @ManyToMany(mappedBy = "hipotecas")
+    @Builder.Default
+    private Set<Usuario> usuarios = new HashSet<>();
 
 
 }
