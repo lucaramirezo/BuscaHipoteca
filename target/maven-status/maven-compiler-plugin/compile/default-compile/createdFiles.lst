@@ -1,0 +1,9 @@
+buscaHipoteca\app\App.class
+buscaHipoteca\model\Usuario.class
+buscaHipoteca\servicio\Servicio.class
+buscaHipoteca\repositorio\Repositorio.class
+buscaHipoteca\controller\MainController.class
+buscaHipoteca\controller\HipotecaController.class
+buscaHipoteca\controller\ComparadorController.class
+buscaHipoteca\Main.class
+buscaHipoteca\model\Hipoteca.class
