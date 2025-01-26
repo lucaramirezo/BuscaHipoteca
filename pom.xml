@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.grupo9.buscahipoteeca</groupId>
@@ -89,3 +90,12 @@
     </plugins>
   </build>
 </project>
+=======
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.grupo9.buscahipoteeca</groupId>
+  <artifactId>buscahipoteeca</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>buscahipoteeca</name>
+</project>
+>>>>>>> 4787f1bafb9d970f685025c027e057187e45223a

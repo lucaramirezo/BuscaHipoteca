@@ -2,11 +2,19 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< HEAD
             "name": "Spring Boot-DemoApplication<demo>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.example.demo.DemoApplication",
             "projectName": "demo",
+=======
+            "name": "Spring Boot-BuscahipotecasApplication<buscahipotecas>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "grupo_nueve.buscahipotecas.BuscahipotecasApplication",
+            "projectName": "buscahipotecas",
+>>>>>>> 4787f1bafb9d970f685025c027e057187e45223a
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

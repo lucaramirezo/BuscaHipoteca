@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="buscaHipoteca.controller.ComparadorController">
+    
+    <!-- Barra superior -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #2B6CB0; -fx-padding: 10;">
+            <children>
+                <Label text="🏠" style="-fx-font-size: 24px; -fx-text-fill: white;" />
+                <Label text="BuscaHipoteca" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" />
+            </children>
+        </HBox>
+    </top>
+    
+    <!-- Panel izquierdo (Formulario) -->
+    <left>
+        <VBox alignment="TOP_LEFT" spacing="20" style="-fx-padding: 20;">
+            <children>
+                <Label text="Importe inicial" style="-fx-font-size: 16px; -fx-text-fill: #1A202C;" />
+                <TextField fx:id="importeInicialField" promptText="#### €" style="-fx-background-radius: 8; -fx-padding: 10;" />
+
+                <Label text="Tipo de hipoteca" style="-fx-font-size: 16px; -fx-text-fill: #1A202C;" />
+                <ComboBox fx:id="tipoHipotecaComboBox" promptText="Selecciona un tipo" style="-fx-background-radius: 8;" />
+
+                <Label text="Finalidad" style="-fx-font-size: 16px; -fx-text-fill: #1A202C;" />
+                <ComboBox fx:id="finalidadComboBox" promptText="Selecciona la finalidad" style="-fx-background-radius: 8;" />
+
+                <Label text="Añadir banco" style="-fx-font-size: 16px; -fx-text-fill: #1A202C;" />
+                <ComboBox fx:id="bancoComboBox" promptText="Selecciona un banco" style="-fx-background-radius: 8;" />
+
+                <!-- Chips de bancos seleccionados -->
+                <FlowPane fx:id="chipsFlowPane" hgap="10" vgap="10" style="-fx-background-color: #E2E8F0; -fx-padding: 10; -fx-background-radius: 10;" />
+
+                <!-- Botón comparar -->
+                <Button text="Comparar" fx:id="compararButton" style="-fx-background-color: #2B6CB0; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5;" />
+            </children>
+        </VBox>
+    </left>
+    
+    <!-- Panel derecho (Comparación) -->
+    <center>
+        <HBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+            <children>
+                <!-- Tarjeta de comparación -->
+                <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #FFFFFF; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 4);" prefWidth="250.0">
+                    <Label fx:id="banco1NombreLabel" text="Santander" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A202C;" />
+                    <Label fx:id="banco1PrecioLabel" text="€50 / mo" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1A202C;" />
+                    <ListView fx:id="banco1CaracteristicasListView" prefHeight="120.0" style="-fx-background-color: #F5F7FA;" />
+                    <Button text="Seleccionar" fx:id="banco1Button" style="-fx-background-color: #2B6CB0; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5;" />
+                </VBox>
+
+                <!-- Otra tarjeta de comparación -->
+                <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #FFFFFF; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 4);" prefWidth="250.0">
+                    <Label fx:id="banco2NombreLabel" text="ING" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A202C;" />
+                    <Label fx:id="banco2PrecioLabel" text="€45 / mo" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1A202C;" />
+                    <ListView fx:id="banco2CaracteristicasListView" prefHeight="120.0" style="-fx-background-color: #F5F7FA;" />
+                    <Button text="Seleccionar" fx:id="banco2Button" style="-fx-background-color: #2B6CB0; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5;" />
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>
