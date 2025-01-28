@@ -22,21 +22,15 @@ public class JwtService {
 
     public String getToken(UserDetails usuario)
     {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'getToken'");
-
         return getToken(new HashMap<>(), usuario);
     }
         
     
     private String getToken(Map<String,Object> extraClaims, UserDetails usuario) {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'getToken'");
-        String username_test = usuario.getUsername();
         return Jwts
             .builder()
             .setClaims(extraClaims)
-            .setSubject(usuario.getUsername()) // TODO
+            .setSubject(usuario.getUsername())
             .setIssuedAt(new Date(System.currentTimeMillis()))
             .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
             .signWith(getKey(), SignatureAlgorithm.HS256)
@@ -45,23 +39,17 @@ public class JwtService {
 
 
     private Key getKey() {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'getKey'");
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
 
     public String getEmailFromToken(String token) {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'getEmailFromToken'");
         return getClaim(token, Claims::getSubject);
     }
 
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'isTokenValid'");
         final String email = getEmailFromToken(token);
         return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
