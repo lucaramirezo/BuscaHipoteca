@@ -12,7 +12,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<<<<<<< HEAD
+<StackPane style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="buscaHipoteca.controller.AppController">
+=======
 <StackPane style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="buscaHipoteca.controller.MainController">
+>>>>>>> 4787f1bafb9d970f685025c027e057187e45223a
     <children>
         <VBox fx:id="mainVBox" alignment="TOP_CENTER" spacing="20" prefHeight="800.0" prefWidth="1000.0" style="-fx-padding: 30;">
             <!-- Contenedor del logo y mensaje de bienvenida -->
