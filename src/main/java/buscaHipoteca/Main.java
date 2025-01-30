@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package buscaHipoteca;
 
 //import buscaHipoteca.app.App;
@@ -17,16 +16,3 @@ public class Main {
        // System.out.println("Prueba");
     }
 }
-=======
-package buscaHipoteca;
-
-import buscaHipoteca.app.App;
-
-public class Main {    
-
-    public static void main(String[] args) {
-        App.main(args);
-        System.out.println("Prueba");
-    }
-}
->>>>>>> 4787f1bafb9d970f685025c027e057187e45223a

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Comparador de Hipotecas</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <script src="/js/comparador.js" defer></script>
+</head>
+<body class="comparador-body">
+<header>
+  <h1>🏠 BuscaHipoteca</h1>
+</header>
+
+<main class="container">
+  <section class="form-section">
+    <h2>Filtrar Hipotecas</h2>
+
+    <div class="input-group">
+      <label for="importeInicial">Importe inicial (€):</label>
+      <input type="number" id="importeInicial" placeholder="Ejemplo: 100000">
+    </div>
+
+    <div class="input-group">
+      <label for="tipoHipoteca">Tipo de Hipoteca:</label>
+      <select id="tipoHipoteca">
+        <option value="">Selecciona un tipo</option>
+        <option value="fija">Fija</option>
+        <option value="variable">Variable</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="finalidad">Finalidad:</label>
+      <select id="finalidad">
+        <option value="">Selecciona la finalidad</option>
+        <option value="vivienda">Vivienda</option>
+        <option value="inversion">Inversión</option>
+      </select>
+    </div>
+
+    <button id="compararButton">🔍 Comparar</button>
+    <button id="verTodasButton">📜 Ver Todas</button>
+  </section>
+
+  <section class="results-section">
+    <h2>Resultados</h2>
+    <div id="resultados" class="cards-container">
+      <p>Selecciona filtros o presiona "Ver Todas" para mostrar las hipotecas.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Página de Login</title>
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="/js/login.js" defer></script>
 </head>
-<body>
-    <h1>Iniciar Sesión</h1>
-    <form>
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username"><br><br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password"><br><br>
-        <button type="submit">Iniciar Sesión</button>
+<body class="login-body">
+<div class="form-container">
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+        <div class="input-group">
+            <label for="usernameField">Usuario:</label>
+            <input type="text" id="usernameField" placeholder="Usuario">
+        </div>
+
+        <div class="input-group">
+            <label for="emailField">Correo Electrónico:</label>
+            <input type="email" id="emailField" placeholder="Correo Electrónico">
+        </div>
+
+        <div class="input-group">
+            <label for="passwordField">Contraseña:</label>
+            <input type="password" id="passwordField" placeholder="Contraseña">
+        </div>
+
+        <button id="loginButton">Entrar</button>
     </form>
+    <p><a th:href="@{/register}">¿No tienes cuenta? Regístrate aquí</a></p>
+</div>
 </body>
 </html>

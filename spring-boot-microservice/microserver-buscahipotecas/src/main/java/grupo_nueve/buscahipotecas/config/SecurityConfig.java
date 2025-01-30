@@ -8,11 +8,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
 
 import grupo_nueve.buscahipotecas.Jwt.JwtAuthenticationFilter;
-
-// import static org.springframework.security.config.Customizer.withDefaults;
-
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -20,27 +23,38 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-        private final JwtAuthenticationFilter jwtAuthenticationFilter;
-        private final AuthenticationProvider authProvider;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final AuthenticationProvider authProvider;
 
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                return http
-                                .csrf(csrf -> csrf.disable()) // Crossside Request forced Desabilitar proteccion csrf
-                                .authorizeHttpRequests(authRequest -> authRequest
-                                                .requestMatchers("/test/**").permitAll()
-                                                .requestMatchers("/buscahipotecas/v1/auth/**").permitAll()
-                                                .requestMatchers("/doc/swagger-ui/**").permitAll()
-                                                .requestMatchers("/buscahipotecas/v1/swagger-ui/**").permitAll()
-                                                // .requestMatchers("/doc/swagger-ui.html").permitAll()
-                                                // .requestMatchers("/doc/swagger-ui/index.html").permitAll()
-                                                .requestMatchers("/buscahipotecas/v1/**").authenticated()
-                                                .anyRequest().authenticated())
-                                .sessionManagement(sessionManager -> sessionManager
-                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .authenticationProvider(authProvider)
-                                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                                .build();
-        }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .csrf(csrf -> csrf.disable()) // Deshabilitar CSRF para pruebas
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Habilitar CORS
+                .authorizeHttpRequests(authRequest -> authRequest
+                        .requestMatchers("/buscahipotecas/v1/auth/**").permitAll() // 🔥 Permitir Login/Register
+                        .requestMatchers("/test/**").permitAll()
+                        .requestMatchers("/doc/swagger-ui/**").permitAll()
+                        .requestMatchers("/buscahipotecas/v1/swagger-ui/**").permitAll()
+                        .requestMatchers("/buscahipotecas/v1/**").authenticated()
+                        .anyRequest().authenticated())
+                .sessionManagement(sessionManager -> sessionManager
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
+    }
 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("http://localhost:8081")); // Permitir Frontend
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        config.setAllowCredentials(true); // Permitir autenticación
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
 }

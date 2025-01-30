@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package buscaHipoteca.model;
 
 import javax.persistence.*;
@@ -37,22 +36,3 @@ public class Usuario {
 		this.pass = pass;
 	}
 }
-=======
-package buscaHipoteca.model;
-
-public class Usuario {
-    private String name;
-
-    public Usuario(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-}
->>>>>>> 4787f1bafb9d970f685025c027e057187e45223a

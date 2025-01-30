@@ -31,7 +31,7 @@ public class AuthController {
             AuthResponse register_response = authService.register(request);
             return ResponseEntity.ok(register_response);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(new AuthResponse(e.getMessage()));
+            return ResponseEntity.status(500).body(new AuthResponse());
         }
     }
 

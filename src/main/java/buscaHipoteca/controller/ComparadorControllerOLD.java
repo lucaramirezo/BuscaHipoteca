@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ComparadorController {
+public class ComparadorControllerOLD {
 
     // Campos del formulario
     @FXML
