@@ -12,21 +12,19 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<<<<<<< HEAD
+
 <StackPane style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="buscaHipoteca.controller.AppController">
-=======
-<StackPane style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="buscaHipoteca.controller.MainController">
->>>>>>> 4787f1bafb9d970f685025c027e057187e45223a
+
     <children>
         <VBox fx:id="mainVBox" alignment="TOP_CENTER" spacing="20" prefHeight="800.0" prefWidth="1000.0" style="-fx-padding: 30;">
             <!-- Contenedor del logo y mensaje de bienvenida -->
             <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 10;">
-				<!-- Logo -->
-				<ImageView fitHeight="60.0" fitWidth="60.0">
-				    <image>
-				        <Image url="@/VIEW/IMAGENES/logo.png" />
-				    </image>
-				</ImageView>
+                <!-- Logo -->
+                <ImageView fitHeight="60.0" fitWidth="60.0">
+                    <image>
+                        <Image url="@/VIEW/IMAGENES/logo.png" />
+                    </image>
+                </ImageView>
 
                 <!-- Mensaje de Bienvenida -->
                 <VBox alignment="CENTER_LEFT">
@@ -41,11 +39,9 @@
             <!-- Vista de Login -->
             <VBox fx:id="loginView" alignment="CENTER" spacing="20" visible="true">
                 <Label text="Iniciar Sesión" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1A202C;" />
-                
                 <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);">
                     <!-- Campo Usuario -->
                     <TextField fx:id="usuarioTextField" promptText="Usuario o correo" style="-fx-background-radius: 8; -fx-padding: 15;" />
-                    
                     <!-- Campo Contraseña -->
                     <PasswordField fx:id="passwordField" promptText="Contraseña" style="-fx-background-radius: 8; -fx-padding: 15;" />
 
@@ -64,10 +60,8 @@
                 <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);">
                     <!-- Campo Usuario -->
                     <TextField fx:id="registerUserField" promptText="Usuario o correo" style="-fx-background-radius: 8; -fx-padding: 15;" />
-                    
                     <!-- Campo Contraseña -->
                     <PasswordField fx:id="registerPasswordField" promptText="Contraseña" style="-fx-background-radius: 8; -fx-padding: 15;" />
-                    
                     <!-- Confirmar Contraseña -->
                     <PasswordField fx:id="confirmPasswordField" promptText="Confirmar Contraseña" style="-fx-background-radius: 8; -fx-padding: 15;" />
 

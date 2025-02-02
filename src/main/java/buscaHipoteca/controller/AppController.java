@@ -128,7 +128,7 @@ public class AppController {
 
     /**
      * Muestra una alerta informativa o de error.
-     * 
+     *
      * @param title   Título de la alerta.
      * @param content Contenido de la alerta.
      */
@@ -138,36 +138,31 @@ public class AppController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-    
     /**
      * Funciones para el acceso por BBDD
      */
-    
     private boolean CheckUser(String user, String contraseña) {
-    	boolean check = false;
-    	int id = 0;
-    	String nombre = null;
-    	String pass = null;
-    	try{
-    		
-    		// Crear statement y ejecutar consulta
+        boolean check = false;
+        int id = 0;
+        String nombre = null;
+        String pass = null;
+        try{
+            // Crear statement y ejecutar consulta
             Statement stmt = SQLite.connect().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM usuario where name = '"+user+"'");
-            	
-            	while(rs.next()) {
-            		id = rs.getInt("id");
-            		nombre = rs.getString("name");
-            		pass = rs.getString("pass");
-            	}
-            if(user.equals(nombre) && contraseña.equals(pass)) {
-            	check = true;
-            }else {
-            	System.out.println("error en el login");
+            while(rs.next()) {
+                id = rs.getInt("id");
+                nombre = rs.getString("name");
+                pass = rs.getString("pass");
             }
-    	}catch(Exception e) {
-    		e.printStackTrace();
-    	}
-    	return check;
+            if(user.equals(nombre) && contraseña.equals(pass)) {
+                check = true;
+            }else {
+                System.out.println("error en el login");
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return check;
     }
-    
 }
