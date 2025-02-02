@@ -33,6 +33,12 @@ public class MainController {
         return "ComparadorPage"; // Carga templates/ComparadorPage.html
     }
 
+    @GetMapping("/hipotecas-guardadas")
+    public String misHipotecas() {
+        return "MisHipotecas"; // Se debe asegurar que el archivo está en /templates/
+    }
+
+
     @GetMapping("/test") // Página de prueba
     public String showTestPage() {
         Logger.info("Entrando a la página de test");

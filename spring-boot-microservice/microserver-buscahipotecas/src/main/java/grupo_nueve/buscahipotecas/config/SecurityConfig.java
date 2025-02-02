@@ -23,38 +23,38 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final AuthenticationProvider authProvider;
+        private final JwtAuthenticationFilter jwtAuthenticationFilter;
+        private final AuthenticationProvider authProvider;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(csrf -> csrf.disable()) // Deshabilitar CSRF para pruebas
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Habilitar CORS
-                .authorizeHttpRequests(authRequest -> authRequest
-                        .requestMatchers("/buscahipotecas/v1/auth/**").permitAll() // 🔥 Permitir Login/Register
-                        .requestMatchers("/test/**").permitAll()
-                        .requestMatchers("/doc/swagger-ui/**").permitAll()
-                        .requestMatchers("/buscahipotecas/v1/swagger-ui/**").permitAll()
-                        .requestMatchers("/buscahipotecas/v1/**").authenticated()
-                        .anyRequest().authenticated())
-                .sessionManagement(sessionManager -> sessionManager
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                return http
+                        .csrf(csrf -> csrf.disable()) // Deshabilitar CSRF para pruebas (activar en producción)
+                        .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Habilitar CORS
+                        .authorizeHttpRequests(authRequest -> authRequest
+                                .requestMatchers("/test/**").permitAll()
+                                .requestMatchers("/buscahipotecas/v1/auth/**").permitAll() // Permitir autenticación
+                                .requestMatchers("/doc/swagger-ui/**").permitAll()
+                                .requestMatchers("/buscahipotecas/v1/swagger-ui/**").permitAll()
+                                .requestMatchers("/buscahipotecas/v1/**").authenticated()
+                                .anyRequest().authenticated())
+                        .sessionManagement(sessionManager -> sessionManager
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .authenticationProvider(authProvider)
+                        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                        .build();
+        }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:8081")); // Permitir Frontend
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-        config.setAllowCredentials(true); // Permitir autenticación
+        @Bean
+        public CorsConfigurationSource corsConfigurationSource() {
+                CorsConfiguration config = new CorsConfiguration();
+                config.setAllowedOrigins(List.of("http://localhost:8081")); // Permitir frontend en 8081
+                config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+                config.setAllowCredentials(true); // Permitir cookies y tokens
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                source.registerCorsConfiguration("/**", config);
+                return source;
+        }
 }

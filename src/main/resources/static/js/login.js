@@ -1,5 +1,5 @@
 document.getElementById("loginButton").addEventListener("click", async (event) => {
-    event.preventDefault(); // Evita que el formulario recargue la página
+    event.preventDefault(); // Evita que la página se recargue
 
     let username = document.getElementById("usernameField").value.trim();
     let email = document.getElementById("emailField").value.trim();
@@ -26,7 +26,7 @@ document.getElementById("loginButton").addEventListener("click", async (event) =
         }
 
         let data = await response.json();
-        localStorage.setItem("token", data.token || ""); // Guarda el token JWT
+        localStorage.setItem("token", data.token || ""); // Guarda el token JWT si existe
         window.location.href = "/comparador"; // Redirige al Comparador
     } catch (error) {
         alert("❌ Error en la conexión: " + error.message);

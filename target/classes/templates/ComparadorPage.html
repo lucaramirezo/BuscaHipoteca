@@ -2,51 +2,92 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Comparador de Hipotecas</title>
+  <!-- Bootstrap y Estilos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <script src="/js/comparador.js" defer></script>
 </head>
-<body class="comparador-body">
-<header>
-  <h1>🏠 BuscaHipoteca</h1>
-</header>
+<body>
+<!-- Incluir Navbar -->
+<th:block th:replace="fragments/header :: nav"></th:block>
 
-<main class="container">
-  <section class="form-section">
-    <h2>Filtrar Hipotecas</h2>
+<div class="container mt-4">
+  <!-- Navbar para Hipotecas Guardadas -->
+  <nav class="navbar navbar-light bg-light my-3">
+    <div class="container-fluid">
+      <span class="navbar-brand">📂 Hipotecas Guardadas</span>
+      <button class="btn btn-outline-primary" id="verHipotecasGuardadas">Ver Hipotecas</button>
+    </div>
+  </nav>
 
-    <div class="input-group">
-      <label for="importeInicial">Importe inicial (€):</label>
-      <input type="number" id="importeInicial" placeholder="Ejemplo: 100000">
+  <div class="row">
+    <!-- Sección de Filtros -->
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h5 class="mb-3">Filtrar Hipotecas</h5>
+
+        <label for="importeInicial" class="form-label">Importe inicial (€):</label>
+        <input type="number" id="importeInicial" class="form-control mb-2" placeholder="Ejemplo: 100000">
+
+        <label for="tipoHipoteca" class="form-label">Tipo de Hipoteca:</label>
+        <select id="tipoHipoteca" class="form-select mb-2">
+          <option value="">Selecciona un tipo</option>
+          <option value="fija">Fija</option>
+          <option value="variable">Variable</option>
+          <option value="mixta">Mixta</option>
+        </select>
+
+        <label for="finalidad" class="form-label">Finalidad:</label>
+        <select id="finalidad" class="form-select mb-2">
+          <option value="">Selecciona la finalidad</option>
+          <option value="primera vivienda">Primera Vivienda</option>
+          <option value="inversion">Inversión</option>
+          <option value="autopromocion">Autopromoción</option>
+        </select>
+
+        <label for="banco" class="form-label">Añadir Banco:</label>
+        <select id="banco" class="form-select mb-2">
+          <option value="">Selecciona un banco</option>
+        </select>
+
+        <!-- Chips de Bancos Seleccionados -->
+        <div id="bancosSeleccionados" class="mb-3"></div>
+
+        <button id="compararButton" class="btn btn-primary w-100">🔍 Comparar</button>
+        <button id="verTodasButton" class="btn btn-outline-dark w-100 mt-2">📜 Ver Todas</button>
+      </div>
     </div>
 
-    <div class="input-group">
-      <label for="tipoHipoteca">Tipo de Hipoteca:</label>
-      <select id="tipoHipoteca">
-        <option value="">Selecciona un tipo</option>
-        <option value="fija">Fija</option>
-        <option value="variable">Variable</option>
-      </select>
+    <!-- Sección de Comparación -->
+    <div class="col-md-9">
+      <h4 class="mb-3">Resumen/Comparación de Hipotecas</h4>
+      <div id="resultados" class="row g-3">
+        <!-- Aquí se generarán dinámicamente las tarjetas de hipotecas -->
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class="input-group">
-      <label for="finalidad">Finalidad:</label>
-      <select id="finalidad">
-        <option value="">Selecciona la finalidad</option>
-        <option value="vivienda">Vivienda</option>
-        <option value="inversion">Inversión</option>
-      </select>
-    </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    cargarBancos();
+  });
 
-    <button id="compararButton">🔍 Comparar</button>
-    <button id="verTodasButton">📜 Ver Todas</button>
-  </section>
+  function cargarBancos() {
+    const bancos = [
+      "BBVA", "Santander", "CaixaBank", "Sabadell", "ING", "Kutxabank",
+      "Bankinter", "EVO Banco", "Openbank", "Unicaja"
+    ];
 
-  <section class="results-section">
-    <h2>Resultados</h2>
-    <div id="resultados" class="cards-container">
-      <p>Selecciona filtros o presiona "Ver Todas" para mostrar las hipotecas.</p>
-    </div>
-  </section>
-</main>
+    let bancoSelect = document.getElementById("banco");
+    bancos.forEach(banco => {
+      let option = document.createElement("option");
+      option.value = banco;
+      option.textContent = banco;
+      bancoSelect.appendChild(option);
+    });
+  }
+</script>
+
 </body>
 </html>
